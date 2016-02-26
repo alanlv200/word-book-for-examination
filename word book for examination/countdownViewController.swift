@@ -9,6 +9,12 @@
 import UIKit
 
 class countdownViewController: UIViewController {
+    
+    @IBOutlet var yearTextField: UITextField!
+    @IBOutlet var monthTextField: UITextField!
+    @IBOutlet var dayTextField: UITextField!
+    
+    let saveData = NSUserDefaults.standardUserDefaults()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,5 +37,10 @@ class countdownViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func update() {
+        let countdownDate = ["year": yearTextField.text!, "month": monthTextField!, "day": dayTextField!]
+        saveData.setObject(countdownDate, forKey: "COUNTDOWN")
+    }
 
 }

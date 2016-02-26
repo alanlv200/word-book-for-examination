@@ -9,6 +9,14 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
+    
+    @IBOutlet var questionLabel: UILabel!
+    @IBOutlet var answerLabel: UILabel!
+    
+    
+    //日付の確認をするための実験的実装
+    @IBOutlet var dateLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
