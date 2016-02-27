@@ -20,21 +20,20 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let now = NSDate()
         
-        if saveData.arrayForKey("COUNTDOWN") != nil {
-            let countdown = saveData.arrayForKey("COUNTDOWN")!
-            let countdownYear = countdown[0]["year"] as? String
-            let countdownMonth = countdown[0]["month"] as? String
-            let countdownDay = countdown[0]["day"] as? String
-        
+        if let countdownDate = saveData.arrayForKey("COUNTDOWN") {
+            let countdownYear = countdownDate[0]["year"] as? String
+            let countdownMonth = countdownDate[0]["month"] as? String
+            let countdownDay = countdownDate[0]["day"] as? String
+    
             let intYear = Int(countdownYear!)
             let intMonth = Int(countdownMonth!)
             let intDay = Int(countdownDay!)
+    
+            let countdown = cal.dateWithEra(1, year: intYear!, month: intMonth!, day: intDay!, hour: 0, minute: 0, second: 0, nanosecond: 0)
         
-        let countdownDate = cal.dateWithEra(1, year: intYear!, month: intMonth!, day: intDay!, hour: 0, minute: 0, second: 0, nanosecond: 0)
+            let componentsByDay = cal.components([.Day], fromDate: now, toDate: countdown!, options: NSCalendarOptions())
         
-        let componentsByDay = cal.components([.Day], fromDate: now, toDate: countdownDate!, options: NSCalendarOptions())
-        
-        label.text = String(componentsByDay)
+            label.text = String(componentsByDay)
         }
     }
 
